@@ -7,11 +7,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "kafka-vagrant-poc"
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
 
-  nodes = {
-    { 'host' => 'node1', 'ip' => '192.168.66.55', 'memory' => 2048, 'roles': ['kafka'] }
-  }
+  nodes = [
+    { :host => 'node1', :ip => '192.168.66.55', :memory => 2048, :roles => ['kafka'] },
+  ]
 
-
+  nodes.each do |node|
+    config.vm.define node[:host] do |node_config|
+      node_config.vm.host_name = node[:host]
+      node_config.vm.provider :virtualbox do |vb|
+        memory = node[:memory] ? node[:memory] : 1024
+        vb.customize ['modifyvm', :id, '--name', node[:host], '--memory', memory]
+      end
+    end
+  end
   # config.vm.provider "virtualbox" do |vb|
   #   # Don't boot with headless mode
   #   vb.gui = true
