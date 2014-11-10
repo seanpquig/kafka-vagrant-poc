@@ -14,6 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   nodes.each do |node|
     config.vm.define node[:host] do |node_config|
       node_config.vm.host_name = node[:host]
+      node_config.vm.network :private_network, ip: node[:ip]
       node_config.vm.provider :virtualbox do |vb|
         memory = node[:memory] ? node[:memory] : 1024
         vb.customize ['modifyvm', :id, '--name', node[:host], '--memory', memory]
