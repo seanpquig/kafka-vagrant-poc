@@ -1,10 +1,8 @@
-class kafka (
-  $broker_id   = 1,
-) {
+class zookeeper () {
 
   exec { 'download-zookeeper':
     cwd     => '/home/vagrant',
-    command => 'wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz,
+    command => 'wget http://apache.claz.org/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz',
     creates => '/home/vagrant/zookeeper-3.4.6.tar.gz',
     path    => ['/usr/bin', '/bin'],
   }
@@ -17,8 +15,12 @@ class kafka (
     cwd     => '/home/vagrant',
     command => 'tar -zxvf zookeeper-3.4.6.tar.gz -C /usr/local/zookeeper',
     path    => ['/usr/bin', '/bin'],
-    creates => '/usr/local/kafka/kafka-0.8.0-beta1-src',
+    creates => '/usr/local/zookeeper/zookeeper-3.4.6.tar.gz',
     require => [ Exec['download-zookeeper'], File['/usr/local/zookeeper'] ],
+  }
+
+  file { [ '/var/zookeeper', '/var/zookeeper/data' ]:
+    ensure => 'directory',
   }
 
 }
