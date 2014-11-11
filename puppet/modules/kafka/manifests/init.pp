@@ -25,6 +25,7 @@ class kafka (
     cwd      => '/usr/local/kafka/kafka-0.8.0-beta1-src',
     command  => './sbt update && ./sbt package && ./sbt assembly-package-dependency',
     provider => shell,
+    timeout  => 600,
     path     => ['/usr/local/kafka/kafka-0.8.0-beta1-src', '/usr/bin'],
     creates  => '/usr/local/kafka/kafka-0.8.0-beta1-src/target',
     require  => Exec['untar-kafka'],
