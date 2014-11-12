@@ -1,5 +1,5 @@
 ---
 :backends: yaml
 :yaml:
-  :datadir: /etc/puppet/hiera
+  :datadir: /vagrant/puppet/hiera
 :hierachy: common
