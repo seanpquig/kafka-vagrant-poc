@@ -19,6 +19,8 @@ class zookeeper () {
     require => [ Exec['download-zookeeper'], File['/usr/local/zookeeper'] ],
   }
 
+  $zookeeper_data_dir = hiera('zookeeper_data_dir')
+
   file { 'zoo.cfg':
     ensure  => present,
     path    => '/usr/local/zookeeper/zookeeper-3.4.6/conf/zoo.cfg',
