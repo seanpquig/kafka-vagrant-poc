@@ -14,7 +14,7 @@ syncLimit=5
 # example sakes.
 dataDir=<%= @zookeeper_data_dir %>
 
-server.1=192.168.33.21:2888:3888
+server.1=<%= @fqdn %>:2888:3888
 
 # the port at which the clients will connect
 clientPort=2181
