@@ -1,5 +1,5 @@
 class kafka (
-  $broker_id   = 1,
+  $broker_id  = 1,
 ) {
 
   exec { 'download-kafka-package':
@@ -29,6 +29,17 @@ class kafka (
     path     => ['/usr/local/kafka/kafka-0.8.0-beta1-src', '/usr/bin'],
     creates  => '/usr/local/kafka/kafka-0.8.0-beta1-src/target',
     require  => Exec['untar-kafka'],
+  }
+
+  file { '/var/zookeeper/data/myid':
+    ensure   => present,
+    content  => '1',
+  }
+
+  file { 'server.properties':
+    ensure  => present,
+    path    => '/usr/local/kafka/kafka-0.8.0-beta1-src/config/server.properties',
+    content => template('kafka/server.properties.erb'),
   }
 
 }

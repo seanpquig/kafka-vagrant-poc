@@ -24,7 +24,7 @@ class zookeeper () {
   file { 'zoo.cfg':
     ensure  => present,
     path    => '/usr/local/zookeeper/zookeeper-3.4.6/conf/zoo.cfg',
-    content => template('zookeeper/zoo.cfg'),
+    content => template('zookeeper/zoo.cfg.erb'),
     require => Exec['untar-zookeeper'],
   }
 

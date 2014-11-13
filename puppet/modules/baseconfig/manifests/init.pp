@@ -4,4 +4,10 @@ class baseconfig {
     ensure => installed;
   }
 
+  file {'exports.sh':
+    ensure => present,
+    path   => '/etc/profile.d/exports.sh',
+    source => 'puppet:///modules/baseconfig/exports.sh',
+  }
+
 }
