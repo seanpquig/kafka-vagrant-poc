@@ -1,1 +1,2 @@
 zookeeper_data_dir: /var/zookeeper/data
+zookeeper_host: node1.shuttercorp.net

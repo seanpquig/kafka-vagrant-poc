@@ -31,6 +31,8 @@ class kafka (
     require  => Exec['untar-kafka'],
   }
 
+  $zookeeper_host = hiera('zookeeper_host')
+
   file { 'server.properties':
     ensure  => present,
     path    => '/usr/local/kafka/kafka-0.8.0-beta1-src/config/server.properties',
