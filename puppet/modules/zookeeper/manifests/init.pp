@@ -32,4 +32,10 @@ class zookeeper () {
     ensure => 'directory',
   }
 
+  file { '/var/zookeeper/data/myid':
+    ensure   => present,
+    content  => '1',
+    require  => File['/var/zookeeper/data'],
+  }
+
 }

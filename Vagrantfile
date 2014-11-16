@@ -8,7 +8,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-puppet.box"
 
   nodes = [
-    { :host => 'node1.shuttercorp.net', :ip => '192.168.33.10', :memory => 2048, :roles => ['kafka'] },
+    { :host => 'node1.shuttercorp.net', :ip => '192.168.33.21', :memory => 2048, :roles => ['kafka'] },
+    { :host => 'node2.shuttercorp.net', :ip => '192.168.33.22', :memory => 2048, :roles => ['kafka'] },
   ]
 
   nodes.each do |node|
