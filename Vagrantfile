@@ -20,6 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         memory = node[:memory] ? node[:memory] : 1024
         vb.customize ['modifyvm', :id, '--name', node[:host], '--memory', memory]
       end
+      node_config.vm.provision :hosts
     end
   end
 
